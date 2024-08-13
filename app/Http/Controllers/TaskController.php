@@ -94,25 +94,22 @@ class TaskController extends Controller
     {
         $taskIds = $request->input('task_ids');
 
+        // Start with priority 1 and increment for each task ID
         foreach ($taskIds as $index => $id) {
             $task = Task::find($id);
-            $task->priority = $index + 1;
-            $task->save();
+            if ($task) {
+                $task->priority = $index + 1;
+                $task->save();
+            }
         }
 
         return response()->json(['message' => 'Tasks reordered successfully.']);
     }
 
-    // Utility function to reorder tasks
-    private function reorderTasks($projectId)
-    {
-        $tasks = Task::where('project_id', $projectId)
-                     ->orderBy('priority', 'asc')
-                     ->get();
 
-        foreach ($tasks as $index => $task) {
-            $task->priority = $index + 1;
-            $task->save();
-        }
+    // Show the specified task
+    public function show(Task $task)
+    {
+        return view('tasks.show', compact('task'));
     }
 }

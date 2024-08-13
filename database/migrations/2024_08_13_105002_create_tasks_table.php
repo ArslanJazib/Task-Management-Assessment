@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('priority');
+            $table->integer('priority')->nullable();
             $table->foreignId('project_id')->constrained()->onDelete('cascade'); // For Bonus Point
             $table->timestamps();
         });

@@ -10,8 +10,12 @@ class Project extends Model
 {
     use HasFactory;
 
+
+
+    protected $primaryKey = 'id';
+
     public function tasks()
     {
-        return $this->hasMany(Task::class);
+        return $this->hasMany(Task::class, 'project_id', 'id');
     }
 }
