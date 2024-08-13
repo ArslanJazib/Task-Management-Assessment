@@ -1,5 +1,7 @@
-<footer class="text-center mt-5">
-    <p>&copy; {{ date('Y') }} Task Management. All Rights Reserved.</p>
+<footer class="bg-light py-3">
+    <div class="container text-center">
+        <p>&copy; {{ date('Y') }} My Application</p>
+    </div>
 </footer>
 </body>
 </html>
